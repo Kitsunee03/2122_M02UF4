@@ -1,0 +1,22 @@
+{
+  "name": "2122_m02uf4",
+  "version": "1.0.0",
+  "description": "Proyecto de BDD",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kitsunee03/2122_M2UF4.git"
+  },
+  "author": "Kitsune",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/Kitsunee03/2122_M2UF4/issues"
+  },
+  "homepage": "https://github.com/Kitsunee03/2122_M2UF4#readme",
+  "dependencies": {
+    "mongodb": "^4.3.1"
+  }
+}
