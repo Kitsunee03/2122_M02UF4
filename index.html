@@ -1,0 +1,35 @@
+<!doctype html>
+
+<html>
+	<head> <title>TFFHD :)</title> </head>
+	<body>
+		<h1> Too Fast Family HD</h1>
+		<h5>MongoDB edition</h5>
+
+		<main>
+			<section id="characters">
+				<ul id="characters-list">
+					<h2>Characters</h2>
+				</ul>
+			</section>
+		</main>
+
+		<script>
+			function charactersLoad(data) {
+				let list = "<h2>Characters</h2>";
+				for(let i=0; i<data.length; i++) {
+					list += "<li>"+data[i].name+"</li>";
+				}
+				document.getElementById("characters-list").innerHTML = list;
+			}
+			let characters_interval= setInterval(function() {
+				fetch("/characters")
+				.then(response => response.json())
+				.then(data => charactersLoad(data));
+			}, 2000);
+		</script>
+	</body>
+	<footer>
+		<h3>Pata de pagina</h3>
+	</footer>
+</html>

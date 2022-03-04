@@ -6,6 +6,7 @@ let mongo_client = require("mongodb").MongoClient;
 
 let url = "mongodb://localhost/";
 let db;
+let fs = require("fs");
 console.log("Iniciando Script mongo_http");
 
 //Mongo Client
@@ -24,7 +25,10 @@ http.createServer(function(req, res) {
 	let col = "";
 
 	if (req.url == "/") {
-		res.end();
+		fs.readFile("index.html",function(err, data){
+			res.writeHead(200, {"Content-Type":"text/html"});
+			res.end(data);
+		});
 		return;
 	}
 	
