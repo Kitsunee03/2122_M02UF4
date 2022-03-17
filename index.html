@@ -21,6 +21,7 @@
 
 		<script>
 			let list;
+			//Load Characters
 			function charactersLoad(data) {
 				list = "<h2>Characters</h2>";
 				for(let i=0; i<data.length; i++) {
@@ -28,12 +29,19 @@
 				}
 				document.getElementById("characters-list").innerHTML = list;
 			}
-			let characters_interval= setInterval(function charUpdate() {
+			//Update Characters
+			let characters_interval= setInterval(function() {
 				fetch("/characters")
 				.then(response => response.json())
 				.then(data => charactersLoad(data));
-			}(), 2000);
+			}());
+			characters_interval= setInterval(function() {
+				fetch("/characters")
+				.then(response => response.json())
+				.then(data => charactersLoad(data));
+			}, 2000);
 
+			//Load Items
 			function itemsLoad(data) {
 				list = "<h2>Items</h2>";
 				for(let i=0; i<data.length; i++) {
@@ -41,11 +49,18 @@
 				}
 				document.getElementById("items-list").innerHTML = list;
 			}
-			let items_interval= setInterval(function itemUpdate() {
+			//Update Items
+			let items_interval= setInterval(function() {
 				fetch("/items")
 				.then(response => response.json())
 				.then(data => itemsLoad(data));
-			}(), 2000);
+			}());
+			items_interval= setInterval(function() {
+				fetch("/items")
+				.then(response => response.json())
+				.then(data => itemsLoad(data));
+			}, 2000);
+
 
 		</script>
 	</body>
