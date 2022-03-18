@@ -22,45 +22,42 @@
 		<script>
 			let list;
 			//Load Characters
+			function fetchCharacters(){
+				fetch("/characters")
+				.then(response => response.json())
+				.then(data => charactersLoad(data));
+			}
 			function charactersLoad(data) {
 				list = "<h2>Characters</h2>";
 				for(let i=0; i<data.length; i++) {
-					list += "<li>"+data[i].name+"</li>";
+					list += "<li><a href=\"/characters/"+data[i]._id+"\">"+data[i].name+"</a></li>";
 				}
 				document.getElementById("characters-list").innerHTML = list;
 			}
 			//Update Characters
 			let characters_interval= setInterval(function() {
-				fetch("/characters")
-				.then(response => response.json())
-				.then(data => charactersLoad(data));
-			}());
-			characters_interval= setInterval(function() {
-				fetch("/characters")
-				.then(response => response.json())
-				.then(data => charactersLoad(data));
+				fetchCharacters();
 			}, 2000);
+			fetchCharacters();
 
 			//Load Items
+			function fetchItems(){
+				fetch("/items")
+				.then(response => response.json())
+				.then(data => itemsLoad(data));
+			}
 			function itemsLoad(data) {
 				list = "<h2>Items</h2>";
 				for(let i=0; i<data.length; i++) {
-					list += "<li>"+data[i].item+"</li>";
+				list += "<li><a href=\"/items/"+data[i]._id+"\">"+data[i].item+"</a></li>";
 				}
 				document.getElementById("items-list").innerHTML = list;
 			}
 			//Update Items
 			let items_interval= setInterval(function() {
-				fetch("/items")
-				.then(response => response.json())
-				.then(data => itemsLoad(data));
-			}());
-			items_interval= setInterval(function() {
-				fetch("/items")
-				.then(response => response.json())
-				.then(data => itemsLoad(data));
+				fetchItems();
 			}, 2000);
-
+			fetchItems();
 
 		</script>
 	</body>
