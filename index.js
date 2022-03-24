@@ -27,7 +27,7 @@ function send_data_list(db, req, res) {
 	else if (req.url == "/items") {col = "items";}
 	else {res.end(); return;}
 	
-	let col_data = db.collection(col).find({},{projection: {name:1} });
+	let col_data = db.collection(col).find({},{projection: {name:1, item:1} });
 	col_data.toArray(function(err, data){
 		let string = JSON.stringify(data);
 		res.end(string);
@@ -39,7 +39,6 @@ http.createServer(function(req, res) {
 	res.writeHead(200);
 
 	let url = req.url.split("/");
-	console.log(url);
 
 	if (req.url == "/") {
 		fs.readFile("index.html",function(err, data){
@@ -54,18 +53,23 @@ http.createServer(function(req, res) {
 	}
 	else{
 		if (url[2].length != 24) {res.end(); return;}
-		if (url[1] == "characters"){
+		if (url[1] == "characters") {
 			let obj_id = new ObjectId(url[2]);
-			let col_data = db.collection("characters").find({"_id":obj_id});
-			
+			let col_data = db.collection("characters").find({"_id":obj_id},{projection: {_id:1, name:1} });
+		
 			col_data.toArray(function(err, data){
 				let string = JSON.stringify(data);
-
 				res.end(string);
-			});
+			});	
 		}
 		else if (url[1] == "items") {
-
+			let obj_id = new ObjectId(url[2]);
+			let col_data = db.collection("items").find({"_id":obj_id},{projection: {_id:1, item:1} });
+		
+			col_data.toArray(function(err, data){
+				let string = JSON.stringify(data);
+				res.end(string);
+			});
 		}
 	}
 
