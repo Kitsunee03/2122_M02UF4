@@ -24,7 +24,7 @@
 		<script>
 			let list;
 			//Load Characters
-			function fetchCharacters(){
+			function fetchCharacters() {
 				fetch("/characters")
 				.then(response => response.json())
 				.then(data => charactersLoad(data));
@@ -32,7 +32,8 @@
 			function charactersLoad(data) {
 				list = "<h2>Characters</h2>";
 				for(let i=0; i<data.length; i++) {
-					list += "<li><a href=\"/characters/"+data[i]._id+"\">"+data[i].name+"</a></li>";
+					list += '<li><a href="/characters/'+data[i]._id+'">'+data[i].name+'</a>   ';
+					list += '<a href="/remove/'+data[i].id_character+'">X</a></li>';
 				}
 				document.getElementById("characters-list").innerHTML = list;
 			}
@@ -43,7 +44,7 @@
 			fetchCharacters();
 
 			//Load Items
-			function fetchItems(){
+			function fetchItems() {
 				fetch("/items")
 				.then(response => response.json())
 				.then(data => itemsLoad(data));
@@ -51,7 +52,7 @@
 			function itemsLoad(data) {
 				list = "<h2>Items</h2>";
 				for(let i=0; i<data.length; i++) {
-				list += "<li><a href=\"/items/"+data[i]._id+"\">"+data[i].item+"</a></li>";
+					list += "<li><a href=\"/items/"+data[i]._id+"\">"+data[i].item+"</a></li>";
 				}
 				document.getElementById("items-list").innerHTML = list;
 			}
@@ -63,7 +64,5 @@
 
 		</script>
 	</body>
-	<footer>
-		<h3>Pata de pagina</h3>
-	</footer>
+	<footer> <h3>Pata de pagina</h3> </footer>
 </html>
