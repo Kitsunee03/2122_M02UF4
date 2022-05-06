@@ -55,7 +55,6 @@ http.createServer(function(req, res) {
 		return;
 	}
 	else{
-		//if (url[2].length != 24) {res.end(); return;}
 		if (url[1] == "characters") {
 			let obj_id = new ObjectId(url[2]);
 			let col_data = db.collection("characters").find({"_id":obj_id},{projection: {_id:1, name:1} });
@@ -74,9 +73,13 @@ http.createServer(function(req, res) {
 				res.end(string);
 			});
 		}
-		else if (url[1] == "remove") {
+		else if (url[1] == "removeCharacter") {
 			db.collection("characters").deleteOne({"id_character":parseInt(url[2])});
-			res.end("DELETED");
+			res.end("CHARACTER DELETED!");
+		}
+		else if (url[1] == "removeItem"){
+			db.collection("items").deleteOne({"id_item":parseInt(url[2])});
+			res.end("ITEM DELETED");
 		}
 	}
 

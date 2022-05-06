@@ -18,6 +18,6 @@
   "homepage": "https://github.com/Kitsunee03/2122_M2UF4#readme",
   "dependencies": {
     "mongod": "^2.0.0",
-    "mongodb": "^4.4.1"
+    "mongodb": "^4.5.0"
   }
 }
